@@ -1,0 +1,93 @@
+/*Untuk File .txt*/
+
+
+Bagian I
+
+a. Suami dari aihoshino
+Query: ?- menikah(aihoshino,Y), pria(Y).
+
+no
+
+
+b. Kakek buyut dan nenek buyut dari eve
+Query: ?- keturunan(eve, _X), keturunan(_X, _Y), keturunan(_Y, Z).
+
+Z = qika ? ;
+
+Z = makio ? ;
+
+no
+
+
+c. Paman dari orang tua francesco ?
+Query: ?- anak(francesco, _X), keponakan(_X,Y), pria(Y).
+
+no
+
+
+d. Orang yang memiliki lebih dari satu istri ?
+Query: ?- pria(X), menikah(X, _W1), wanita(_W1), menikah(X, _W2), wanita(_W2), _W1 \== _W2,
+\+ (menikah(X, _W), wanita(_W), _W1 \== _W, usia(_W, _UsiaW), usia(_W1, _UsiaW1), _UsiaW < _UsiaW1),
+\+ (menikah(X, _W), wanita(_W), _W1 \== _W, usia(_W, _UsiaW), usia(_W2, _UsiaW2), _UsiaW < _UsiaW2).
+
+X = qika ? ;
+
+no
+
+
+e. Saudara tiri tertua dari shelby
+Query: ?- (anaksulung(X), saudaratiri(shelby, X), !); (saudaratiri(shelby, X), !).
+
+X = barok
+
+yes
+
+
+f. Orang tua yang memiliki tepat satu anak
+Query: ?- anak(_A1, X), \+ (anak(_A2, X), _A1 \== _A2).
+
+X = makio ? ;
+
+X = barok ? ;
+
+X = roxy ? ;
+
+X = eriq ? ;
+
+X = ruby ? ;
+
+X = francesco ? ;
+
+X = suzy ? ;
+
+no
+
+
+g. Pria yang memiliki mertua berusia lebih dari 99 tahun ?
+Query: ?- mertua(_X, Y), (pria(_X);wanita(_X)), pria(Y), usia(_X, _Usia), _Usia > 99.
+
+Y = eriq ? ;
+
+no
+
+
+h. Orang yatim piatu dengan usia termuda
+Query: ?- yatimpiatu(X), usia(X,_UsiaX), \+((yatimpiatu(_Y), usia(_Y,_UsiaY), _UsiaY < _UsiaX)).
+
+X = francesco ? ;
+
+no
+
+
+i. Orang diatas 60 tahun yang statusnya menikah dengan orang yang memiliki saudara lebih dari 1 orang
+Query: ?- usia(X,_UsiaX), _UsiaX > 60, menikah(X,_Y), saudara(_Y, _S1), saudara(_Y, _S2), kakak(_S1, _S2), _S1 \== _S2.
+
+X = roxy ? ;
+
+no
+
+
+j. Seluruh keturunan qika yang memiliki tepat 2 keponakan
+Query: ?- keturunan(X,qika), (pria(X); wanita(X)), keponakan(_K1, X), keponakan(_K2, X), _K1 \== _K2, usia(_K1, _U1), usia(_K2, _U2), _U1 < _U2, \+ (keponakan(_K3, X), _K3 \== _K1, _K3 \== _K2).
+
+no
